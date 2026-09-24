@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Limite ecrans Solal</title>
+<style>
+  :root {
+    --bg: #101418;
+    --card: #181e26;
+    --line: #2a323d;
+    --text: #eef2f6;
+    --muted: #9aa7b4;
+    --accent: #ff6b57;
+    --ok: #35c46b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 20px 16px 60px;
+  }
+  h1 {
+    font-size: 20px;
+    margin: 8px 0 2px;
+  }
+  p.sub {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 0 0 18px;
+    line-height: 1.5;
+  }
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+  .dot.on { background: var(--ok); }
+  .dot.off { background: var(--accent); }
+  button.master {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  button.master.enable { background: var(--ok); color: #101418; }
+  button.master.disable { background: var(--accent); color: #101418; }
+  section {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 14px;
+  }
+  section h2 {
+    font-size: 14px;
+    margin: 0 0 2px;
+  }
+  section .time {
+    color: var(--muted);
+    font-size: 12px;
+    margin: 0 0 10px;
+  }
+  .days {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .day-toggle {
+    flex: 1 1 auto;
+    min-width: 42px;
+    text-align: center;
+    padding: 8px 4px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: #0d1116;
+    color: var(--muted);
+    font-size: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .day-toggle.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #101418;
+    font-weight: 600;
+  }
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  button.ghost {
+    flex: 1;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--text);
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 13px;
+  }
+  #log {
+    margin-top: 16px;
+    font-size: 11px;
+    color: var(--muted);
+    white-space: pre-wrap;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+  <h1>Limite ecrans - Solal</h1>
+  <p class="sub">Le rappel "Attention les ecrans devant Solal, on LIMITE AU MAX !" s'affiche a chaque deverrouillage du telephone pendant un creneau coche ci-dessous, meme appli fermee. Decoche un creneau pour le desactiver.</p>
+
+  <div class="status">
+    <span class="dot" id="permDot"></span>
+    <span id="permText">Verification...</span>
+  </div>
+
+  <button class="master" id="masterBtn">...</button>
+
+  <div id="periods"></div>
+
+  <div class="actions">
+    <button class="ghost" id="resetBtn">Reglages par defaut</button>
+    <button class="ghost" id="allOffBtn">Tout decocher</button>
+  </div>
+
+  <div id="log"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
